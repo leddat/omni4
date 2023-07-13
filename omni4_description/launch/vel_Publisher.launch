@@ -1,5 +1,0 @@
-<launch>
-	
-	<node pkg="omni4_description" type="vel_Publisher.py" name="vel_Publisher" output="screen" />
-
-</launch>

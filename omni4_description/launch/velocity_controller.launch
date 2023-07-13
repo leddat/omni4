@@ -5,7 +5,7 @@
 		
 
 	<!-- Load controllers -->
-	 <rosparam file="$(find omni3ros_pkg)/config/joint_velocity.yaml" command="load"/> 
+	 <rosparam file="$(find omni4_description)/config/joint_velocity.yaml" command="load"/> 
 
 	<!-- Controllers-->
 	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/open_base" 
@@ -17,5 +17,6 @@
 	front_joint_velocity_controller
 	"/>
 
+	<node pkg="omni4_controller" type="omni_controller.py" name="omni_controller" output="screen"/>
 
 </launch>

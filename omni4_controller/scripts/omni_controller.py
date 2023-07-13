@@ -30,7 +30,7 @@ def vel_control():
     vel_front = Float64()
 
     #distance form COM to wheel
-    d = 0.04
+    d = 0.4
 
     while not rospy.is_shutdown():
         vel_front.data = SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d
