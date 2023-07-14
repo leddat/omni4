@@ -35,13 +35,13 @@ def vel_control():
     r = 0.01905
 
     while not rospy.is_shutdown():
-        vel_front_right.data = (SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)*4/r
+        vel_back_right.data = (SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_front_left.data = (SQRT_2/2*(-vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
+        vel_front_right.data = (SQRT_2/2*(-vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_back_left.data = (SQRT_2/2*( vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
+        vel_front_left.data = (SQRT_2/2*( vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_back_right.data = (SQRT_2/2*( vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r
+        vel_back_left.data = (SQRT_2/2*( vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r
 
         #publish vel for each wheel
         pub_back_right.publish(vel_back_right)
