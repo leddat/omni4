@@ -17,35 +17,37 @@ def vel_control():
 
     rospy.Subscriber('/cmd_vel', Twist, callback)
 
-    pub_back = rospy.Publisher('/open_base/back_joint_velocity_controller/command', Float64, queue_size=1)
-    pub_left = rospy.Publisher('/open_base/left_joint_velocity_controller/command', Float64, queue_size=1)
-    pub_right = rospy.Publisher('/open_base/right_joint_velocity_controller/command', Float64, queue_size=1)
-    pub_front = rospy.Publisher('/open_base/front_joint_velocity_controller/command', Float64, queue_size=1)
+    pub_back_right = rospy.Publisher('/open_base/back_right_joint_velocity_controller/command', Float64, queue_size=1)
+    pub_back_left = rospy.Publisher('/open_base/back_left_joint_velocity_controller/command', Float64, queue_size=1)
+    pub_front_right = rospy.Publisher('/open_base/front_right_joint_velocity_controller/command', Float64, queue_size=1)
+    pub_front_left = rospy.Publisher('/open_base/front_left_joint_velocity_controller/command', Float64, queue_size=1)
 
     rate=rospy.Rate(2)
 
-    vel_back = Float64()
-    vel_left = Float64()
-    vel_right = Float64()
-    vel_front = Float64()
+    vel_back_right = Float64()
+    vel_back_left = Float64()
+    vel_front_right = Float64()
+    vel_front_left = Float64()
 
     #distance form COM to wheel
-    d = 0.4
+    d = SQRT_2*0.03
+    #wheel radious
+    r = 0.01905
 
     while not rospy.is_shutdown():
-        vel_front.data = SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d
+        vel_front_right.data = (SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)*4/r
 
-        vel_left.data = SQRT_2/2*(-vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d
+        vel_front_left.data = (SQRT_2/2*(-vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_back.data = SQRT_2/2*( vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d
+        vel_back_left.data = (SQRT_2/2*( vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_right.data = SQRT_2/2*( vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d
+        vel_back_right.data = (SQRT_2/2*( vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r
 
         #publish vel for each wheel
-        pub_back.publish(vel_back)
-        pub_left.publish(vel_left)
-        pub_right.publish(vel_right)
-        pub_front.publish(vel_front)
+        pub_back_right.publish(vel_back_right)
+        pub_back_left.publish(vel_back_left)
+        pub_front_right.publish(vel_front_right)
+        pub_front_left.publish(vel_front_left)
         
         rate.sleep()
 

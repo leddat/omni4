@@ -4,25 +4,25 @@ open_base:
         type: joint_state_controller/JointStateController
         publish_rate: 100
 
-    left_joint_velocity_controller:
+    back_left_joint_velocity_controller:
         type: velocity_controllers/JointVelocityController
-        joint: rim_left_joint
-        pid_gains: {p: 1, i: 0.0, d: 0.0}
+        joint: rim_back_left_joint
+        pid: {p: 1, i: 0.0, d: 0.0}
 
-    back_joint_velocity_controller:
+    back_right_joint_velocity_controller:
         type: velocity_controllers/JointVelocityController
-        joint: rim_back_joint
-        pid_gains: {p: 1, i: 0.0, d: 0.0}
+        joint: rim_back_right_joint
+        pid: {p: 1, i: 0.0, d: 0.0}
 
-    right_joint_velocity_controller:
+    front_right_joint_velocity_controller:
         type: velocity_controllers/JointVelocityController
-        joint: rim_right_joint
-        pid_gains: {p: 1, i: 0.0, d: 0.0}
+        joint: rim_front_right_joint
+        pid: {p: 1, i: 0.0, d: 0.0}
 
-    front_joint_velocity_controller:
+    front_left_joint_velocity_controller:
         type: velocity_controllers/JointVelocityController
-        joint: rim_front_joint
-        pid_gains: {p: 1, i: 0.0, d: 0.0}
+        joint: rim_front_left_joint
+        pid: {p: 1, i: 0.0, d: 0.0}
 
     # gazebo_ros_control/pid_gains:
     #     rim_left_joint/p: 1
