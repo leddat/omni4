@@ -24,10 +24,10 @@ def vel_control():
 
     rate=rospy.Rate(2)
 
-    vel_back_right = Float64()
-    vel_back_left = Float64()
-    vel_front_right = Float64()
-    vel_front_left = Float64()
+    w_back_right = Float64()
+    w_back_left = Float64()
+    w_front_right = Float64()
+    w_front_left = Float64()
 
     #distance form COM to wheel
     d = SQRT_2*0.03
@@ -36,19 +36,19 @@ def vel_control():
 
     while not rospy.is_shutdown():
 
-        vel_back_right.data = (SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r 
+        w_back_right.data = (SQRT_2/2*(-vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r 
         #rad/s
-        vel_front_right.data = (SQRT_2/2*(-vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
+        w_front_right.data = (SQRT_2/2*(-vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_front_left.data = (SQRT_2/2*( vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
+        w_front_left.data = (SQRT_2/2*( vel_info.linear.x - vel_info.linear.y) + vel_info.angular.z*d)/r
 
-        vel_back_left.data = (SQRT_2/2*( vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r
+        w_back_left.data = (SQRT_2/2*( vel_info.linear.x + vel_info.linear.y) + vel_info.angular.z*d)/r
 
         #publish vel for each wheel
-        pub_back_right.publish(vel_back_right)
-        pub_back_left.publish(vel_back_left)
-        pub_front_right.publish(vel_front_right)
-        pub_front_left.publish(vel_front_left)
+        pub_back_right.publish(w_back_right)
+        pub_back_left.publish(w_back_left)
+        pub_front_right.publish(w_front_right)
+        pub_front_left.publish(w_front_left)
         
         rate.sleep()
 
