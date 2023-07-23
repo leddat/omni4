@@ -18,5 +18,7 @@
 	"/>
 
 	<node pkg="omni4_controller" type="omni_controller.py" name="omni_controller" output="screen"/>
+	<node pkg="omni4_controller" type="raw_odom.py" name="raw_odom" output="screen"/>
+
 
 </launch>

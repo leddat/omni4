@@ -33,7 +33,7 @@ def raw_odom_calculate():
     rospy.init_node('omni_base')
 
     rospy.Subscriber('/open_base/back_right_joint_velocity_controller/command',Float64, callback_back_right)
-    rospy.Subscriber('/open_base/back_left_joint_velocity_controller',Float64, callback_back_left)
+    rospy.Subscriber('/open_base/back_left_joint_velocity_controller/command',Float64, callback_back_left)
     rospy.Subscriber('/open_base/front_right_joint_velocity_controller/command',Float64, callback_front_right)
     rospy.Subscriber('/open_base/front_left_joint_velocity_controller/command',Float64, callback_front_left)
 
