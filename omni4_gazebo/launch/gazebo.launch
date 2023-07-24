@@ -1,0 +1,18 @@
+<launch>
+
+    <arg name="keyboard" default="false"/>
+
+    <!--Launch Gazebo-->
+    <include file="$(find omni4_description)/launch/velocity_controller.launch"/>
+
+    <!--EKF-->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+        <remap from="odometry/filtered" to="odom" />
+        <rosparam command="load" file="$(find omni4_gazebo)/launch/param/robot_localization.yaml" />
+    </node>
+    
+    <group ns="teleop_keyboard" if="$(arg keyboard)" >
+        <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" />
+    </group>
+
+</launch>
