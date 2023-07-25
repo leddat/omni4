@@ -11,10 +11,11 @@
 	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/open_base" 
 	args="--namespace=/open_base
 	joint_state_controller
-	back_left_joint_velocity_controller
-	back_right_joint_velocity_controller
 	front_right_joint_velocity_controller
 	front_left_joint_velocity_controller
+	back_left_joint_velocity_controller
+	back_right_joint_velocity_controller
+
 	"/>
 
 	<node pkg="omni4_controller" type="omni_controller.py" name="omni_controller" output="screen"/>

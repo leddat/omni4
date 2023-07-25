@@ -11,14 +11,6 @@ import tf
 
 SQRT_2 = math.sqrt(2)
 
-def callback_back_right(msg):
-    global w_back_right
-    w_back_right = msg
-
-def callback_back_left(msg):
-    global w_back_left
-    w_back_left = msg
-
 def callback_front_right(msg):
     global w_front_right
     w_front_right = msg
@@ -27,16 +19,22 @@ def callback_front_left(msg):
     global w_front_left
     w_front_left = msg
 
+def callback_back_right(msg):
+    global w_back_right
+    w_back_right = msg
 
+def callback_back_left(msg):
+    global w_back_left
+    w_back_left = msg
 
 def raw_odom_calculate():
     rospy.init_node('omni_base')
 
-    rospy.Subscriber('/open_base/back_right_joint_velocity_controller/command',Float64, callback_back_right)
-    rospy.Subscriber('/open_base/back_left_joint_velocity_controller/command',Float64, callback_back_left)
     rospy.Subscriber('/open_base/front_right_joint_velocity_controller/command',Float64, callback_front_right)
     rospy.Subscriber('/open_base/front_left_joint_velocity_controller/command',Float64, callback_front_left)
-
+    rospy.Subscriber('/open_base/back_right_joint_velocity_controller/command',Float64, callback_back_right)
+    rospy.Subscriber('/open_base/back_left_joint_velocity_controller/command',Float64, callback_back_left)
+    
     odom_pub = rospy.Publisher("/raw_odom",Odometry,queue_size=50)
     odom_broadcaster = tf.TransformBroadcaster()
     odom_msg = Odometry()
@@ -61,8 +59,8 @@ def raw_odom_calculate():
 
     while not rospy.is_shutdown():
         
-        vx = (SQRT_2*(-w_back_right.data - w_front_right.data + w_front_left.data + w_back_left.data))*r/4
-        vy = (SQRT_2*(w_back_right.data - w_front_right.data - w_front_left.data + w_back_left.data))*r/4
+        vx = (SQRT_2*(-w_front_right.data - w_front_left.data + w_back_left.data + w_back_right.data))*r/4
+        vy = (SQRT_2*(w_front_right.data - w_front_left.data - w_back_left.data + w_back_right.data))*r/4
         angular = (w_back_right.data + w_front_right.data + w_front_left.data + w_back_left.data)*r/(4*d)
         
         current_time = rospy.Time.now()
@@ -100,9 +98,10 @@ def raw_odom_calculate():
 
 
 if __name__ == '__main__':
-    w_back_right = Float64()
-    w_back_left = Float64()
     w_front_right = Float64()
     w_front_left = Float64()
+    w_back_right = Float64()
+    w_back_left = Float64()
+
     print("Publish raw_odom")
     raw_odom_calculate()

@@ -71,45 +71,45 @@
 	</joint>
 
 	<xacro:rim_macro
-		name="back_left"
+		name="front_left"
 		color="0.3 0 0"
 		xyz="-0.03 0.03 0"
-		rpy="1.570796326794896 0 -2.35619449"/>
+		rpy="1.570796326794896 0 0.7853981634"/>
 	<xacro:rim_macro
-		name="back_right"
+		name="back_left"
 		color="0 0.3 0"
 		xyz="-0.03 -0.03 0"
-		rpy="1.570796326794896 0 -0.7853981634"/>
+		rpy="1.570796326794896 0 2.35619449"/>
 	<xacro:rim_macro
-		name="front_right"
+		name="back_right"
 		color="0 0 0.3"
 		xyz="0.03 -0.03 0"
-		rpy="1.570796326794896 0 0.7853981634"/>
+		rpy="1.570796326794896 0 -2.35619449"/>
 
 	<xacro:rim_macro
-		name="front_left"
+		name="front_right"
 		color="0 0.3 0.3"
 		xyz="0.03 0.03 0"
-		rpy="1.570796326794896 0 2.35619449"/>
+		rpy="1.570796326794896 0 -0.7853981634"/>
 
 	<gazebo reference="base_link">
     		<material>Gazebo/White</material>
   	</gazebo>
 
-	<gazebo reference="rim_back_left_link">
+	<gazebo reference="rim_front_right_link">
     		<material>Gazebo/Red</material>
   	</gazebo>
 
-	<gazebo reference="rim_back_right_link">
+	<gazebo reference="rim_front_left_link">
     		<material>Gazebo/Green</material>
   	</gazebo>
 
-	<gazebo reference="rim_front_right_link">
+	<gazebo reference="rim_back_left_link">
     		<material>Gazebo/Blue</material>
   	</gazebo>
 
-	<gazebo reference="rim_front_left_link">
-    		<material>Gazebo/SkyBlue</material>
+	<gazebo reference="rim_back_right_link">
+    		<material>Gazebo/Yellow</material>
   	</gazebo>
 
 	<gazebo>

@@ -1,4 +1,13 @@
 open_base:
+    front_right_joint_velocity_controller:
+        type: velocity_controllers/JointVelocityController
+        joint: rim_front_right_joint
+        pid: {p: 1, i: 0.0, d: 0.0}
+
+    front_left_joint_velocity_controller:
+        type: velocity_controllers/JointVelocityController
+        joint: rim_front_left_joint
+        pid: {p: 1, i: 0.0, d: 0.0}
 
     joint_state_controller:
         type: joint_state_controller/JointStateController
@@ -12,16 +21,6 @@ open_base:
     back_right_joint_velocity_controller:
         type: velocity_controllers/JointVelocityController
         joint: rim_back_right_joint
-        pid: {p: 1, i: 0.0, d: 0.0}
-
-    front_right_joint_velocity_controller:
-        type: velocity_controllers/JointVelocityController
-        joint: rim_front_right_joint
-        pid: {p: 1, i: 0.0, d: 0.0}
-
-    front_left_joint_velocity_controller:
-        type: velocity_controllers/JointVelocityController
-        joint: rim_front_left_joint
         pid: {p: 1, i: 0.0, d: 0.0}
 
     # gazebo_ros_control/pid_gains:
