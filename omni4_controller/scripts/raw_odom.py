@@ -76,13 +76,13 @@ def raw_odom_calculate():
 
         odom_quat = quaternion_from_euler (0,0,th)
 
-        odom_broadcaster.sendTransform(
-            (x, y, 0.0),
-            odom_quat,
-            current_time,
-            "base_footprint",
-            "odom"
-        )
+        # odom_broadcaster.sendTransform(
+        #     (x, y, 0.0),
+        #     odom_quat,
+        #     current_time,
+        #     "base_footprint",
+        #     "odom"
+        # )
 
         odom_msg.header.stamp = current_time
         odom_msg.header.frame_id = "odom"
