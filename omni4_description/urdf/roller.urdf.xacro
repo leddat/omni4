@@ -32,6 +32,8 @@
 		</link>
 	<gazebo reference="roller_${name}_rim_${parent}_link">
     		<material>Gazebo/Black</material>
+			<mu value="1"/>
+			<mu2 value="1"/>
   	</gazebo>
 		<joint name="roller_${name}_rim_${parent}_joint" type="continuous">
 			<parent link="rim_${parent}_link"/>
